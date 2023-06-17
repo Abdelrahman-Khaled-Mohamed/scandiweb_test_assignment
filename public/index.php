@@ -5,8 +5,11 @@ ini_set('display_errors', 1);
 
 require_once '../private/ProductFactory.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deletedSku'])) {
-    ProductFactory::delete($_POST['deletedSku']);
+$products = ProductFactory::readAll();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteIndex'])) {
+    foreach (array_values($_POST['deleteIndex']) as $index)
+        $products[$index]->delete();
 
     header('LOCATION: index.php');
 }
@@ -26,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deletedSku'])) {
 
 <form id='product_list' method='POST'>
     <div class='products-grid-container'>
-        <?php foreach (ProductFactory::readAll() as $index=>$product): ?>
+        <?php foreach ($products as $index=>$product): ?>
             <div class='products-grid-item'>
-                <input name='deletedSku[]' class='delete-checkbox' type='checkbox' value='<?= $product->getSku() ?>'>
+                <input name='deleteIndex[]' class='delete-checkbox' type='checkbox' value='<?= $index ?>'>
                 <h5><?php echo $product->getSku() ?></h5>
                 <h5><?php echo $product->getName() ?></h5>
                 <h5><?php echo $product->getPrice() ?></h5>

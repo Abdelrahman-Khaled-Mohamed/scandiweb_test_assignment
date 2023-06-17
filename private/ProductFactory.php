@@ -31,24 +31,6 @@ class ProductFactory
 
         return $products;
     }
-
-    public static function delete($skuList) {
-    	try {
-    	    $sql = sprintf(
-    	    	"DELETE FROM Products WHERE SKU IN (%s)",
-                join(', ', array_values($skuList))
-            );
-
-    	    
-    	    $statement = Product::makeConnection()->prepare($sql)->execute();
-    	    
-    	    return $statement;
-    	} catch (Exception $e) {
-            throw new Exception($e->getMessage());
-            return false;
-        }
-    }
-
 }
 
 ?>
