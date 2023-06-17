@@ -1,0 +1,46 @@
+h5, h6 {
+	clear: both;
+	margin: 0;
+}
+
+label {
+	display: inline-block;
+	width: 128px;
+}
+
+div {
+	margin: 10px;
+}
+
+.title {
+	display: inline;
+}
+
+#nav-buttons {
+	display: inline;
+	float: right;
+	margin: 0;
+}
+
+.products-grid-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+	gap: 10px;
+}
+
+.products-grid-item {
+	margin: 0;
+	padding: 24px;
+	text-align: center;
+	border: 1px solid black;
+}
+
+.delete-checkbox {
+	display: block;
+	float: left;
+	margin-bottom: 24px;
+}
+
+#book-input-div, #dvd-input-div, #furniture-input-div {
+	margin: 0;
+}
