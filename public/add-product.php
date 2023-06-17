@@ -1,19 +1,20 @@
 <?php
 
-error_reporting(E_ALL);
 ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once '../private/ProductFactory.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        ProductFactory::create($_POST)->insert();
-    } catch (Exception $e) {
-        throw new Exception($e->getMessage());
-        return false;
-    }
+        $productInsertion = ProductFactory::create($_POST)->insert();
 
-    header('LOCATION: index.php');
+        if($productInsertion)
+            header('LOCATION: index.php');
+    } catch (Exception $e) {
+        error_log($e->getMessage());
+    }
 }
 
 ?>

@@ -14,5 +14,5 @@ try {
     
     echo "Database and tables created successfully.";
 } catch(Exception $e) {
-    throw new Exception($e->getMessage());
+    error_log($e->getMessage());
 }

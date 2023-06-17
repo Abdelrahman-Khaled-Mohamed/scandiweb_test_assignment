@@ -21,8 +21,8 @@ abstract class Product
             try {
                 self::$connection = new PDO($dsn, $username, $password, $options);
             } catch (Exception $e) {
-                throw new Exception($e->getMessage());
-                return false;
+                error_log($e->getMessage());
+                return NULL;
             }
         }
         
@@ -43,7 +43,7 @@ abstract class Product
     	    
     	    return true;
     	} catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            error_log($e->getMessage());
             return false;
         }
     }
@@ -58,7 +58,7 @@ abstract class Product
     	    
     	    return $statement;
     	} catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            error_log($e->getMessage());
             return false;
         }
     }

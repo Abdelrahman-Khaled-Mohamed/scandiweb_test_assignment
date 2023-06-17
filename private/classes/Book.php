@@ -30,7 +30,7 @@ class Book extends Product
             return true;
         } catch (Exception $e) {
             parent::delete();
-            throw new Exception($e->getMessage());
+            error_log($e->getMessage());
             return false;
         }
     }
@@ -46,7 +46,7 @@ class Book extends Product
     	    
     	    return $statement->fetchAll(PDO::FETCH_ASSOC);
     	} catch (Exception $e) {
-            throw new Exception($e->getMessage());
+            error_log($e->getMessage());
             return false;
         }
     }
