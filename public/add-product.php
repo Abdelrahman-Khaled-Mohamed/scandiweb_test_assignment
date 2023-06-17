@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div id='price-input-div'>
         <label for='price'>Price (&dollar;)</label>
-        <input name='price' id='price' type='number' step='0.0001' required>
+        <input name='price' id='price' type='number' step='0.0001' min='0' required>
     </div>
 
     <div id='type-input-div'>
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id='book-input-div'>
         <div id='weight-input-div'>
             <label for='weight'>Weight (KG)</label>
-            <input name='weight' id='weight' type='number' step='0.01' required>
+            <input name='weight' id='weight' type='number' step='0.01' min='0' required>
         </div>
 
         <div id='book-input-description'>
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id='dvd-input-div'>
         <div id='size-input-div'>
             <label for='size'>Size (MB)</label>
-            <input name='size' id='size' type='number' step='0.01' required>
+            <input name='size' id='size' type='number' step='0.01' min='0' required>
         </div>
 
         <div id='dvd-input-description'>
@@ -79,17 +79,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div id='furniture-input-div'>
         <div id='height-input-div'>
             <label for='height'>Height (CM)</label>
-            <input name='height' id='height' type='number' step='0.01' required>
+            <input name='height' id='height' type='number' step='0.01' min='0' required>
         </div>
 
         <div id='width-input-div'>
             <label for='width'>Width (CM)</label>
-            <input name='width' id='width' type='number' step='0.01' required>
+            <input name='width' id='width' type='number' step='0.01' min='0' required>
         </div>
 
         <div id='length-input-div'>
             <label for='length'>Length (CM)</label>
-            <input name='length' id='length' type='number' step='0.01' required>
+            <input name='length' id='length' type='number' step='0.01' min='0' required>
         </div>
 
         <div id='furniture-input-description'>
