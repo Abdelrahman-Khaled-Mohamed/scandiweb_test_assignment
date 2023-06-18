@@ -28,7 +28,7 @@ class DVD extends Product
             $sql = sprintf(
                 "INSERT INTO DVDs (sku, %s) VALUES (%s, %s)",
                 join(', ', array_keys($dvdValues)),
-                parent::getSku(),
+                '"' . parent::getSku() . '"',
                 join(', ', array_values($dvdValues))
             );
 

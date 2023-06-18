@@ -32,7 +32,7 @@ class Furniture extends Product
             $sql = sprintf(
                 "INSERT INTO Furniture (sku, %s) VALUES (%s, %s)",
                 join(', ', array_keys($furnitureValues)),
-                parent::getSku(),
+                '"' . parent::getSku() . '"',
                 join(', ', array_values($furnitureValues))
             );
 

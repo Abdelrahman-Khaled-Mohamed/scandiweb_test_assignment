@@ -43,7 +43,7 @@ abstract class Product
             $sql = sprintf(
     	    	"INSERT INTO Products (%s) VALUES (%s)",
     	    	join(', ', array_keys($productValues)),
-                join(', ', array_values($productValues))
+                join(', ', array_map(fn ($value) => '"' . $value . '"', array_values($productValues)))
             );
 
             $statement = self::makeConnection()->prepare($sql)->execute();
@@ -60,7 +60,7 @@ abstract class Product
     public function delete()
     {
     	try {
-    	    $sql = "DELETE FROM Products WHERE SKU=$this->sku";
+    	    $sql = "DELETE FROM Products WHERE SKU=\"$this->sku\"";
     	    
     	    $statement = self::makeConnection()->prepare($sql)->execute();
     	    

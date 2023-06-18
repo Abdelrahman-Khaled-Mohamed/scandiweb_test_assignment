@@ -28,7 +28,7 @@ class Book extends Product
             $sql = sprintf(
                 "INSERT INTO Books (sku, %s) VALUES (%s, %s)",
                 join(', ', array_keys($bookValues)),
-                parent::getSku(),
+                '"' . parent::getSku() . '"',
                 join(', ', array_values($bookValues))
             );
 
