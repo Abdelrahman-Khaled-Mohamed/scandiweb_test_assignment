@@ -1,19 +1,26 @@
 <?php
 
+namespace classes;
+
+use \PDO;
+use \ReflectionClass;
+
 class Furniture extends Product
 {
     private $height;
     private $width;
     private $length;
 
-    public function __construct($sku, $name, $price, $height, $width, $length) {
+    public function __construct($sku, $name, $price, $height, $width, $length)
+    {
     	parent::__construct($sku, $name, $price);
         $this->height = $height;
         $this->width = $width;
         $this->length = $length;
     }
 
-    public function insert() {
+    public function insert()
+    {
         try {
             $productInsertion = parent::insert();
 
@@ -39,11 +46,12 @@ class Furniture extends Product
         }
     }
 
-    public static function selectAll() {
+    public static function selectAll()
+    {
         try {
     	    $sql = $sql = sprintf(
                 "SELECT parent.*, %s FROM Products parent, Furniture this WHERE parent.SKU = this.SKU",
-                join(', ', array_map(fn ($key) => 'this.' . $key, array_keys((new ReflectionClass('Furniture'))->getDefaultProperties())))
+                join(', ', array_map(fn ($key) => 'this.' . $key, array_keys((new ReflectionClass('classes\\Furniture'))->getDefaultProperties())))
             );
     	    
     	    $statement = parent::makeConnection()->query($sql);
@@ -55,15 +63,18 @@ class Furniture extends Product
         }
     }
 
-    public function getHeight() {
+    public function getHeight()
+    {
         return $this->height;
     }
 
-    public function getWidth() {
+    public function getWidth()
+    {
         return $this->width;
     }
 
-    public function getLength() {
+    public function getLength()
+    {
         return $this->length;
     }
 }

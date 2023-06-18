@@ -1,15 +1,22 @@
 <?php
 
+namespace classes;
+
+use \PDO;
+use \ReflectionClass;
+
 class Book extends Product
 {
     private $weight;
 
-    public function __construct($sku, $name, $price, $weight) {
+    public function __construct($sku, $name, $price, $weight)
+    {
     	parent::__construct($sku, $name, $price);
         $this->weight = $weight;
     }
 
-    public function insert() {
+    public function insert()
+    {
         try {
             $productInsertion = parent::insert();
 
@@ -35,11 +42,12 @@ class Book extends Product
         }
     }
 
-    public static function selectAll() {
+    public static function selectAll()
+    {
         try {
             $sql = $sql = sprintf(
                 "SELECT parent.*, %s FROM Products parent, Books this WHERE parent.SKU = this.SKU",
-                join(', ', array_map(fn ($key) => 'this.' . $key, array_keys((new ReflectionClass('Book'))->getDefaultProperties())))
+                join(', ', array_map(fn ($key) => 'this.' . $key, array_keys((new ReflectionClass('classes\\Book'))->getDefaultProperties())))
             );
     	    
     	    $statement = parent::makeConnection()->query($sql);
@@ -51,7 +59,8 @@ class Book extends Product
         }
     }
 
-    public function getWeight() {
+    public function getWeight()
+    {
         return $this->weight;
     }
 }

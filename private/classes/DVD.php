@@ -1,15 +1,22 @@
 <?php
 
+namespace classes;
+
+use \PDO;
+use \ReflectionClass;
+
 class DVD extends Product
 {
     private $size;
 
-    public function __construct($sku, $name, $price, $size) {
+    public function __construct($sku, $name, $price, $size)
+    {
     	parent::__construct($sku, $name, $price);
         $this->size = $size;
     }
 
-    public function insert() {
+    public function insert()
+    {
         try {
             $productInsertion = parent::insert();
 
@@ -35,11 +42,12 @@ class DVD extends Product
         }
     }
 
-    public static function selectAll() {
+    public static function selectAll()
+    {
         try {
     	    $sql = $sql = sprintf(
                 "SELECT parent.*, %s FROM Products parent, DVDs this WHERE parent.SKU = this.SKU",
-                join(', ', array_map(fn ($key) => 'this.' . $key, array_keys((new ReflectionClass('DVD'))->getDefaultProperties())))
+                join(', ', array_map(fn ($key) => 'this.' . $key, array_keys((new ReflectionClass('classes\\DVD'))->getDefaultProperties())))
             );
     	    
     	    $statement = parent::makeConnection()->query($sql);
@@ -51,7 +59,8 @@ class DVD extends Product
         }
     }
 
-    public function getSize() {
+    public function getSize()
+    {
         return $this->size;
     }
 }

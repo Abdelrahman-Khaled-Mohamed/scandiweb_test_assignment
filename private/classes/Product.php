@@ -1,5 +1,9 @@
 <?php
 
+namespace classes;
+
+use \PDO;
+
 abstract class Product
 {
     private static $connection;
@@ -8,13 +12,15 @@ abstract class Product
     private $name;
     private $price;
 
-    public function __construct($sku, $name, $price) {
+    public function __construct($sku, $name, $price)
+    {
         $this->sku = $sku;
         $this->name = $name;
         $this->price = $price;
     }
     
-    public static function makeConnection() {
+    public static function makeConnection()
+    {
     	require __DIR__ . "/../../config.php";
     	
         if (!isset(self::$connection)) {
@@ -29,7 +35,8 @@ abstract class Product
         return self::$connection;
     }
 
-    public function insert() {
+    public function insert()
+    {
     	try {
             $productValues = get_object_vars($this);
 
@@ -50,7 +57,8 @@ abstract class Product
     
     abstract public static function selectAll();
     
-    public function delete() {
+    public function delete()
+    {
     	try {
     	    $sql = "DELETE FROM Products WHERE SKU=$this->sku";
     	    
@@ -63,15 +71,18 @@ abstract class Product
         }
     }
 
-    public function getSku() {
+    public function getSku()
+    {
         return $this->sku;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getPrice() {
+    public function getPrice()
+    {
         return $this->price;
     }
 }

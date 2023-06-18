@@ -4,6 +4,8 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+use private\ProductFactory;
+
 require_once '../private/ProductFactory.php';
 
 $products = ProductFactory::readAll();
@@ -38,11 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteIndex'])) {
                 <h5><?php echo $product->getPrice() ?></h5>
                 <h5>
                     <?php
-                        if (get_class($product) === 'Book')
+                        if (get_class($product) === 'classes\\Book')
                             echo 'Weight: ' . $product->getWeight() . 'KG';
-                        else if (get_class($product) === 'DVD')
+                        else if (get_class($product) === 'classes\\DVD')
                             echo 'Size: ' . $product->getSize() . 'MB';
-                        else if (get_class($product) === 'Furniture')
+                        else if (get_class($product) === 'classes\\Furniture')
                             echo 'Dimension: ' . $product->getHeight() . '×' . $product->getWidth() . '×' . $product->getLength();
                     ?>
                 </h5>
