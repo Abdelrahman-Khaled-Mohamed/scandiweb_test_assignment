@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if($productInsertion)
             header('LOCATION: index.php');
     } catch (Exception $e) {
+        echo '<script>alert("This SKU already exist!");</script>';
         error_log($e->getMessage());
     }
 }

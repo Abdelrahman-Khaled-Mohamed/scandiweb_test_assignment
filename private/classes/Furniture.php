@@ -63,18 +63,8 @@ class Furniture extends Product
         }
     }
 
-    public function getHeight()
+    public function getProperties()
     {
-        return $this->height;
-    }
-
-    public function getWidth()
-    {
-        return $this->width;
-    }
-
-    public function getLength()
-    {
-        return $this->length;
+        return 'Dimension: ' . $this->height . '×' . $this->width . '×' . $this->length;
     }
 }

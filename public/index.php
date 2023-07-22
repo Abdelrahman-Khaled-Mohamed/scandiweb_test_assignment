@@ -38,16 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deleteIndex'])) {
                 <h5><?php echo $product->getSku() ?></h5>
                 <h5><?php echo $product->getName() ?></h5>
                 <h5><?php echo $product->getPrice() ?></h5>
-                <h5>
-                    <?php
-                        if (get_class($product) === 'classes\\Book')
-                            echo 'Weight: ' . $product->getWeight() . 'KG';
-                        else if (get_class($product) === 'classes\\DVD')
-                            echo 'Size: ' . $product->getSize() . 'MB';
-                        else if (get_class($product) === 'classes\\Furniture')
-                            echo 'Dimension: ' . $product->getHeight() . '×' . $product->getWidth() . '×' . $product->getLength();
-                    ?>
-                </h5>
+                <h5><?php echo $product->getProperties() ?></h5>
             </div>
         <?php endforeach; ?>
     </div>

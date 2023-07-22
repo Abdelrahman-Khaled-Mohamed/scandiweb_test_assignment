@@ -14,14 +14,31 @@ spl_autoload_register(function ($class) {
 
 class ProductFactory
 {
+    private const PRODUCT_TYPES = [
+        'book' => 'createBook',
+        'dvd' => 'createDVD',
+        'furniture' => 'createFurniture',
+    ];
+
     public static function create($properties)
     {
-        if ($properties["type"] === 'book')
-            return new Book($properties["sku"], $properties["name"], $properties["price"], $properties["weight"]);
-        else if ($properties["type"] === 'dvd')
-            return new DVD($properties["sku"], $properties["name"], $properties["price"], $properties["size"]);
-        else if ($properties["type"] === 'furniture')
-            return new Furniture($properties["sku"], $properties["name"], $properties["price"], $properties["height"], $properties["width"], $properties["length"]);
+        $method = self::PRODUCT_TYPES[$properties["type"]];
+        return self::$method($properties);
+    }
+
+    private static function createBook($properties)
+    {
+        return new Book($properties["sku"], $properties["name"], $properties["price"], $properties["weight"]);
+    }
+
+    private static function createDVD($properties)
+    {
+        return new DVD($properties["sku"], $properties["name"], $properties["price"], $properties["size"]);
+    }
+
+    private static function createFurniture($properties)
+    {
+        return new Furniture($properties["sku"], $properties["name"], $properties["price"], $properties["height"], $properties["width"], $properties["length"]);
     }
 
     public static function readAll()

@@ -59,8 +59,8 @@ class DVD extends Product
         }
     }
 
-    public function getSize()
+    public function getProperties()
     {
-        return $this->size;
+        return 'Size: ' . $this->size . 'MB';
     }
 }

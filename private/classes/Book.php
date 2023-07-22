@@ -59,8 +59,8 @@ class Book extends Product
         }
     }
 
-    public function getWeight()
+    public function getProperties()
     {
-        return $this->weight;
+        return 'Weight: ' . $this->weight . 'KG';
     }
 }
